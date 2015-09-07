@@ -37,7 +37,8 @@ $config = [
                 'task' => 'task/index',
                 'taskarchive' => 'task/archive',
                 'money' => 'money/index',
-            ],
+                'cost/all/<month>' => 'cost/all',
+            ], 
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

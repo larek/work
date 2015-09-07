@@ -15,7 +15,18 @@ use Yii;
 class Cost extends \yii\db\ActiveRecord
 {
     public function getSum($category){
-        return Cost::find()->where(['category' => $category])->sum('money');
+       return Cost::find()->andWhere(['category' => $category])->andWhere(['like','date',$this-> month])->sum('money');
+    }
+    
+    protected function getMonth(){
+        if(Yii::$app->request->get('month')){
+            $month = Yii::$app->request->get('month');
+        }
+        else{
+            $month = date("Y-m");
+        }
+        
+        return $month;
     }
     /**
      * @inheritdoc

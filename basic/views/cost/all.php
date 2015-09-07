@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'Costs';
 $this->params['breadcrumbs'][] = $this->title;
+ 
 ?>
 <div class="cost-index">
 
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <br />
     <p>Общая сумма расходов — <?= $sum;?></p>
-
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [

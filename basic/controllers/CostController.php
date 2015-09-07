@@ -42,12 +42,20 @@ class CostController extends Controller
             'sum' => $sum,
         ]);
     }
-    
+     
     public function actionAll(){
         
         $searchModel = new CostSearch();
+        $query = Cost::find();
+        
+        if(Yii::$app->request->get('month')){
+            $query->andWhere(['like','date',Yii::$app->request->get('month')]);
+        }else{
+            $query->andWhere(['like','date',date("Y-m")]);
+        }
+        $query->groupBy('Category');
         $dataProvider = new ActiveDataProvider([
-            'query' => Cost::find()->groupBy('Category'),
+            'query' => $query,
         ]);
         $sum = Cost::find()->sum('money');
         return $this->render('all', [
