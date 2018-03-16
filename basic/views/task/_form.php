@@ -4,19 +4,20 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use dosamigos\tinymce\TinyMce;
+use app\models\Client;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Task */
 /* @var $form yii\widgets\ActiveForm */
+
+$clients = Client::find()->all();
 ?>
 
 <div class="task-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'client_id')->textInput() ?>
-     
-    <?//= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map($clients,'id','site')) ?>
+    <?= $form->field($model, 'client_id')->dropDownList(ArrayHelper::map($clients,'id','site')) ?>
 
     <?= $form->field($model, 'task')->widget(TinyMce::className(),[
         'options' => ['rows' => 8],
